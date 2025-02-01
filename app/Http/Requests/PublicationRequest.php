@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class ProfileRequest extends FormRequest
+class PublicationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +22,10 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|between:3,40',
-            'email' => [
-                'required',
-                'email',
-                /*'unique',
-                Rule::unique('profiles')->whereNull('deleted_at')*/
-            ],
-            'password'=>'required|min:9|confirmed',
-            'bio'=>'min:15',
-             'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
+            'titre'=>'required|min:5|max:150',
+            'body'=>'required|min:20',
+            'image'=>'image'
         ];
     }
+
 }

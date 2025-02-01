@@ -6,16 +6,18 @@
         @endforeach   
     </x-alert>     
     @endif
-    <form action="{{ route('profile.store')}}" method="POST" enctype="multipart/form-data">
+    <h1>Modifier Profile</h1>
+    <form action="{{ route('profile.update',$profile->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="input-groupe mb-2">
             <label for="">Name</label>
-            <input class="form-control" type="text" name="name"  value="{{$errors->has('name')?'':old('name')}}">
+            <input class="form-control" type="text" name="name"  value="{{$errors->has('name')?'':old('name',$profile->name)}}">
             @error('name') <p class="text-danger">{{$message}}</p> @endError
         </div>
         <div class="input-groupe mb-2">
             <label for="">Email</label>
-            <input class="form-control" type="text" name="email"  value="{{old('email')}}">
+            <input class="form-control" type="text" name="email"  value="{{old('email',$profile->email)}}">
             @error('email') <p class="text-danger">{{$message}}</p> @endError
         </div>
         <div class="input-groupe mb-2">
@@ -30,7 +32,7 @@
         <div class="input-groupe mb-2">
         <label for="">Bio</label>          
         <textarea class="form-control" name="bio" id="" cols="20" rows="10">
-            {{old('bio')}}
+            {{old('bio',$profile->bio)}}
         </textarea>
         @error('bio') <p class="text-danger">{{$message}}</p> @endError
         </div>
@@ -39,6 +41,6 @@
             <input class="form-control" type="file" name="image">
             @error('image') <p class="text-danger">{{$message}}</p> @endError
         </div>
-        <button class="btn btn-primary" type="submit">Ajouter</button>
+        <button class="btn btn-primary" type="submit">Edit</button>
     </form>
 </x-master>

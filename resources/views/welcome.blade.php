@@ -10,7 +10,7 @@
     {{--@include('partials.nav') 
 
 
-    @unless (count($cours)>0)
+    (ILA MAKANCH KBER MN ZERO )@unless (count($cours)>0)
         <h2>pas cours pour l'instance</h2>
             
         @else
