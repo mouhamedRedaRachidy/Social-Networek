@@ -29,22 +29,20 @@ Route::get('/', [homeController::class, 'index'])
 Route::get('/logout', [LoginController::class, 'logout'])
     ->name('login.logout')->middleware('auth');
 
-Route::middleware(['guest'])->group(function(){
+Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'show'])
-    ->name('login.show');
+        ->name('login.show');
     Route::post('/login', [LoginController::class, 'login'])
-    ->name('login');
+        ->name('login');
 });
 
 
-Route::resource('profile',profileController::class);
+
 
 Route::get('/info', [infoController::class, 'index'])
     ->name('info.index');
-
-Route::resource('publication',PublicationController::class);
-
-
+Route::resource('profile', profileController::class);
+Route::resource('publication', PublicationController::class);
 
 
 
@@ -55,54 +53,56 @@ Route::resource('publication',PublicationController::class);
 
 
 
-    /////////
-    Route::get('route/{a}/{b}',function(Request $request,Calcul $calcul){
-        $a=$request->a;
-        $b=$request->b;
-        $some=$calcul->mains($a,$b);
-        return 'Somme '. $some;
-    });
-    Route::view('/form','form');
-    Route::post('/form',function(Request $request){
 
-        /*$name = $request->input('name')?:'Nom name';
+
+/////////
+Route::get('route/{a}/{b}', function (Request $request, Calcul $calcul) {
+    $a = $request->a;
+    $b = $request->b;
+    $some = $calcul->mains($a, $b);
+    return 'Somme ' . $some;
+});
+Route::view('/form', 'form');
+Route::post('/form', function (Request $request) {
+
+    /*$name = $request->input('name')?:'Nom name';
         dd($name);*/
-        $url='storage/profile/1HcvcFpVzOXQuLjMJKEwDVoouHtpup2pdickXSAW.jpg';
+    $url = 'storage/profile/1HcvcFpVzOXQuLjMJKEwDVoouHtpup2pdickXSAW.jpg';
 
-        //return response()->download($url);
-        /*return response()->file($url,[
+    //return response()->download($url);
+    /*return response()->file($url,[
             'Content-Disposition'=>'inline'
         ]);*/
-    });
+});
 
-    Route::get('cookie/get',function(Request $request){
-        return response($request->cookie('job'));
-    });
+Route::get('cookie/get', function (Request $request) {
+    return response($request->cookie('job'));
+});
 
-    Route::get('cookie/set/{cookie}',function($cookie){
-        $response=new Response();
-        //$response->cookie('age',$cookie,60);
-        $cookieObject=cookie('job',$cookie,1);
-        $response->withCookie($cookieObject);
-        return $response;
-    });
+Route::get('cookie/set/{cookie}', function ($cookie) {
+    $response = new Response();
+    //$response->cookie('age',$cookie,60);
+    $cookieObject = cookie('job', $cookie, 1);
+    $response->withCookie($cookieObject);
+    return $response;
+});
 
-    Route::get('resuest',function(Response $response){
-        $response->setContent('rachidyy Dev');
-       // $response->json(['data'=>'info']);
-        return $response;
-    });
+Route::get('resuest', function (Response $response) {
+    $response->setContent('rachidyy Dev');
+    // $response->json(['data'=>'info']);
+    return $response;
+});
 
-    Route::get('headers',function(){
-        $response=new Response();
-        $response->withHeaders([
-            'Content-Type'=>'Text/plain',
-            'X-REDA'=>'Yes',
-        ]);
-        //$response->header();
-        //$response->header('host','XYZ');
-        return $response->setContent(['date'=>'rachidy']);
-    });
+Route::get('headers', function () {
+    $response = new Response();
+    $response->withHeaders([
+        'Content-Type' => 'Text/plain',
+        'X-REDA' => 'Yes',
+    ]);
+    //$response->header();
+    //$response->header('host','XYZ');
+    return $response->setContent(['date' => 'rachidy']);
+});
 
 
 
