@@ -9,6 +9,7 @@ use App\Models\Publication;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PublicationController extends Controller
@@ -23,6 +24,7 @@ class PublicationController extends Controller
     }
     public function index()
     {
+
         $publications = Publication::orderby('id', 'desc')->get();
         return view('publication.index', compact('publications'));
     }

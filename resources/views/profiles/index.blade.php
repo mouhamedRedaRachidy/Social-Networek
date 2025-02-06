@@ -1,3 +1,4 @@
+@props(['profiles'])
 <x-master title="Profile">
     <h1>Profiles</h1>
 
